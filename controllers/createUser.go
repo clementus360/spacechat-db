@@ -37,6 +37,8 @@ func CreateUser(UserDB *gorm.DB) http.HandlerFunc{
 
 		user = body.User
 
+		fmt.Println(body.User)
+
 		// Adds a new user to the database
 		if err := UserDB.Create(&user).Error; err != nil {
 			HandleError(err, "Failed to add user to DB", res)

@@ -23,6 +23,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/api/user", controllers.CreateUser(UserDB)).Methods("POST")
 	router.HandleFunc("/api/user/{id}", controllers.FindUser(UserDB)).Methods("GET")
+	router.HandleFunc("/api/encryption/{id}", controllers.FindEncryptionKey(UserDB)).Methods("GET")
 
 	go func ()  {
 		services.DeleteUsersHandler(UserDB)
