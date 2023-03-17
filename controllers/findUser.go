@@ -23,6 +23,7 @@ func FindUser(UserDB *gorm.DB) http.HandlerFunc {
 		if result.Error != nil {
 			if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 				HandleError(result.Error, "Failed to find user", res)
+				return
 			}
 			return
 		}
