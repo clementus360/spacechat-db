@@ -6,5 +6,5 @@ The Chat Application Database Service provides a convenient and efficient way to
 
 The following software is required to run the Chat Application Database Service:
 
-Go
+Go <br />
 PostgreSQL
