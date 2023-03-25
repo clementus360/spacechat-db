@@ -58,7 +58,6 @@ func CreateUser(UserDB *gorm.DB) http.HandlerFunc{
 
 		// Writes a response when successful
 		res.WriteHeader(http.StatusOK)
-		json.NewEncoder(res).Encode(user)
-		// res.Write([]byte("User created successfully"))
+		res.Write([]byte("User created successfully"))
 	}
 }

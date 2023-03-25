@@ -17,7 +17,7 @@ func FindUser(UserDB *gorm.DB) http.HandlerFunc {
 
 		vars := mux.Vars(req)
 
-		fmt.Println(vars["id"])
+		fmt.Println("Hash:", vars["id"])
 
 		result := UserDB.Where("phone_hash = ?", vars["id"]).First(&user)
 		if result.Error != nil {

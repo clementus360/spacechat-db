@@ -24,6 +24,7 @@ func main() {
 	router.HandleFunc("/api/user", controllers.CreateUser(UserDB)).Methods("POST")
 	router.HandleFunc("/api/user/{id}", controllers.FindUser(UserDB)).Methods("GET")
 	router.HandleFunc("/api/encryption/{id}", controllers.FindEncryptionKey(UserDB)).Methods("GET")
+	router.HandleFunc("/api/user/{id}", controllers.ActivateUser(UserDB)).Methods("PUT")
 
 	go func ()  {
 		services.DeleteUsersHandler(UserDB)
