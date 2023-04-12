@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 
 	"github.com/clementus360/spacechat-db/models"
@@ -17,8 +16,6 @@ func FindUser(UserDB *gorm.DB) http.HandlerFunc {
 
 		vars := mux.Vars(req)
 
-		fmt.Println("Hash:", vars["id"])
-
 		result := UserDB.Where("phone_hash = ?", vars["id"]).First(&user)
 		if result.Error != nil {
 			if errors.Is(result.Error, gorm.ErrRecordNotFound) {
@@ -29,6 +26,6 @@ func FindUser(UserDB *gorm.DB) http.HandlerFunc {
 		}
 
 		json.NewEncoder(res).Encode(user)
-		res.WriteHeader(http.StatusOK)
+		// res.WriteHeader(http.StatusOK)
 	}
 }

@@ -22,6 +22,6 @@ func FindEncryptionKey(UserDB *gorm.DB) http.HandlerFunc {
 		}
 
 		json.NewEncoder(res).Encode(encryption)
-		res.WriteHeader(http.StatusOK)
+		// res.WriteHeader(http.StatusOK)
 	}
 }

@@ -11,18 +11,17 @@ import (
 
 type CreateUserRequestData struct {
 	User models.User `json:"user"`
-	Key string `json:"key"`
+	Key  string      `json:"key"`
 }
 
 // Handles Error logs in the console and the response
-func HandleError(err error,message string, res http.ResponseWriter) {
-	fmt.Println(message)
-	fmt.Println(err)
+func HandleError(err error, message string, res http.ResponseWriter) {
+	fmt.Println(message, ": ", err)
 	http.Error(res, message, http.StatusInternalServerError)
 }
 
 // Adds user to the database
-func CreateUser(UserDB *gorm.DB) http.HandlerFunc{
+func CreateUser(UserDB *gorm.DB) http.HandlerFunc {
 	return func(res http.ResponseWriter, req *http.Request) {
 		var body CreateUserRequestData
 		var user models.User
@@ -30,14 +29,12 @@ func CreateUser(UserDB *gorm.DB) http.HandlerFunc{
 
 		// Gets the user data from request body
 		err := json.NewDecoder(req.Body).Decode(&body)
-		if err!=nil {
+		if err != nil {
 			HandleError(err, "Failed to decode request body", res)
 			return
 		}
 
 		user = body.User
-
-		fmt.Println(body.User)
 
 		// Adds a new user to the database
 		if err := UserDB.Create(&user).Error; err != nil {
@@ -47,7 +44,7 @@ func CreateUser(UserDB *gorm.DB) http.HandlerFunc{
 
 		EncryptionKey = models.EncryptionKey{
 			UserID: user.ID,
-			Key: body.Key,
+			Key:    body.Key,
 		}
 
 		// Adds a new encryption key to the database
