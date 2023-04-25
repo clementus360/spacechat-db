@@ -15,7 +15,7 @@ func DeleteUsersHandler(UserDB *gorm.DB) {
 	c.AddFunc("@hourly", func() {
 		RowsAffected, err := config.DeleteInactiveUsers(UserDB)
 
-		if err!=nil {
+		if err != nil {
 			log.Println(err)
 		} else {
 			log.Printf("Deleted %v users", RowsAffected)

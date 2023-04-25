@@ -26,12 +26,12 @@ func main() {
 	router.HandleFunc("/api/encryption/{id}", controllers.FindEncryptionKey(UserDB)).Methods("GET")
 	router.HandleFunc("/api/user/{id}", controllers.ActivateUser(UserDB)).Methods("PUT")
 
-	go func ()  {
+	go func() {
 		services.DeleteUsersHandler(UserDB)
 	}()
 
 	err := http.ListenAndServe(":3001", router)
-	if err!=nil {
+	if err != nil {
 		fmt.Println("Failed to start server")
 		log.Fatal(err)
 	} else {

@@ -26,6 +26,5 @@ func FindUser(UserDB *gorm.DB) http.HandlerFunc {
 		}
 
 		json.NewEncoder(res).Encode(user)
-		// res.WriteHeader(http.StatusOK)
 	}
 }
